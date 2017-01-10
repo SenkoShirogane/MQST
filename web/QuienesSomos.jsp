@@ -39,7 +39,7 @@
                   <span class="icon-bar"></span> 
                 </button>
                 <a class="navbar-brand" href="index.jsp">
-                    <span class="glyphicon glyphicon-home"></span> Inicio </a> 
+                    <span class="glyphicon glyphicon-home"></span> Inicio </a>  
                 </div>
                 <% HttpSession sesion = request.getSession(); %>
                 <% if(sesion.getAttribute("Cliente")==null && sesion.getAttribute("Admin")==null){%>
