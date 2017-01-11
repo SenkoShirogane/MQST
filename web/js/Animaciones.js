@@ -88,9 +88,9 @@ function kp(e){
 function correo(e){
     tecla = (document.all) ? e.keyCode : e.which; // 2
     if (tecla==8) return true; // 3
-    patron =/[áéíóú´]/; // 4
+    patron =/[áéíóú´:;{}[]()<>+*~]/; // 4
     te = String.fromCharCode(tecla); // 5
     if (!patron.test(te)){
-    } else { alert("Lo sentimos, no se aceptan los acentos en el correo."); }
+    } else { alert("Lo sentimos, no se aceptan los acentos ni los símbolos en el correo."); }
     return !patron.test(te); //6
 };
