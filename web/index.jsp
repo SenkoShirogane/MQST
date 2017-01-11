@@ -119,9 +119,9 @@
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/MQST/Administrador/Perfil.jsp">
-                                        <span class="glyphicon glyphicon-arrow-right"></span> Mi Perfil</a></li>
+                                        <span class="glyphicon glyphicon-arrow-right"></span> Mi Perfil </a></li>
                                     <li><a href="/MQST/CerrarSesion"> 
-                                        <span class="glyphicon glyphicon-arrow-right"></span> Cerrar Sesión</a></li>
+                                        <span class="glyphicon glyphicon-arrow-right"></span> Cerrar Sesión </a></li>
                                 </ul>
                             </li>
                         </ul>
