@@ -110,27 +110,28 @@
             </div>
         </nav>
         <h1 align="center">Catálogo de Administradores</h1>
-        <h3 align="center">Aquí puedes ver a todos los administradores de la página.</h3><br>
-        <form action="../Administrador/GestionarAdministradores.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Gestionar Administradores">
-            </div>
-        </form>
+        <h3 align="center">Aquí puedes ver a todos los administradores de la página.</h3>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Administrador" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus>
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar a algún Administrador?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div><BR>
-        <div class="container">
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Administrador/GestionarAdministradores.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Eliminar Administradores">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
         <div class="panel-group" id="accordion">
         <div class="col-md-8 col-md-offset-2">
         <%
@@ -167,9 +168,9 @@
             } else {
                 ResultSet resulta2 = bd.consulta("select * from ConsultaAdmin where (idA like '%"+BuscarAdmin+"%' "
                     + "or Usuario like '%"+BuscarAdmin+"%' or Apellido_Paterno like '%"+BuscarAdmin+"%' "
-                    + "or Apellido_Materno like '%"+BuscarAdmin+"%' or Email like '%"+BuscarAdmin+"%' ) ");  	
-                while(resulta2.next()){
-        %>
+                    + "or Apellido_Materno like '%"+BuscarAdmin+"%' or Email like '%"+BuscarAdmin+"%' ) "); %>
+                <h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarAdmin%>".</h2>
+        <%      while(resulta2.next()){ %>
             <div class="panel panel-primary">
                 <div class="panel-heading">
                   <h4 class="panel-title">

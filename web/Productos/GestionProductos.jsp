@@ -127,10 +127,10 @@
                 <div id="home" class="tab-pane fade in active">
                     <div class="container-fluid text-center">
                         <h3>Modificar o Eliminar Productos</h3>
-                        <div class="col-md-6 col-md-offset-3">
-                            <form class="navbar-form" role="search">
+                        <div class="col-md-4 col-md-offset-4">
+                            <form role="search">
                                 <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Buscar Producto" name="Buscar" id="Busqueda" 
+                                    <input type="search" class="form-control" placeholder="¿Deseas buscar algún Producto?" name="Buscar"
                                            minlength="3" autofocus onkeypress="return kp(event)" required>
                                     <div class="input-group-btn">
                                         <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
@@ -144,7 +144,7 @@
                         if(Buscar==null){
                     %>
                     <%while(rs2.next()){ %>
-                    <div class=" col-md-offset-0 col-md-12" Style="padding-bottom: 40px;padding-right: 0px;"> 
+                    <div class=" col-md-offset-0 col-md-12" Style="padding-bottom: 30px;padding-right: 0px;"> 
                         <div id="Foto" class="col-md-offset-0 col-md-4" align="center">
                             <img src="/MQST/F?Producto=<%out.println(rs2.getObject("idAlmacen"));%>" class="img-rounded img img-responsive" 
                                  Style="width:300px;height:300px;display:inline;" alt=" Imagen del Producto">
@@ -223,7 +223,7 @@
                     %>    
                     <h2 align="center">Éstos son los Resultados que se encontraron para "<%=Buscar%>".</h2>
                     <% while(rs3.next()){ %>
-                    <div class=" col-md-offset-0 col-md-12" Style="padding-bottom: 40px; padding-right: 0px;"> 
+                    <div class=" col-md-offset-0 col-md-12" Style="padding-bottom: 30px; padding-right: 0px;"> 
                         <div id="Foto" class="col-md-offset-0 col-md-4" align="center">
                             <img src="/MQST/F?Producto=<%out.println(rs3.getObject("idAlmacen"));%>" class="img-rounded img img-responsive" 
                                  Style="width:300px;height:300px;display:inline;" alt=" Imagen del Producto">

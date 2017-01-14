@@ -171,7 +171,9 @@
                     <div class="col-md-3">
                         <input type="date" name="fecent" class="form-control" required>
                     </div>
-                </div> 
+                    
+                </div>
+                <div class="help-block">El formato para la fecha es: AAAA/MM/DD</div>
                 <div class="form-group">
                 <label class="control-label col-md-3">Detalles:</label>
                     <div class="col-md-6">

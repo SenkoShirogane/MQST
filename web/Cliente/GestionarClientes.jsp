@@ -108,7 +108,7 @@
             </div>
         </nav>
         <h1 align="center">Gestionar Clientes</h1>
-        <h3 align="center">Aquí puedes consultar y eliminar a los Clientes Activos.</h3><BR>
+        <h3 align="center">Aquí puedes consultar y eliminar a los Clientes Activos.</h3>
         <% ElimCliente = request.getParameter("UsuarioEl");
            ElimCliente2 = request.getParameter("ContraEl");
             if(ElimCliente==null){ }else{
@@ -116,26 +116,25 @@
                 out.println("<script> location.replace('/MQST/Cliente/GestionarClientes.jsp'); </script>");
             } 
         %>  
-        <form action="../Cliente/ConsultarClientes.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Consultar Clientes">
-            </div>
-        </form>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">  
+            <div class="col-md-4 col-md-offset-4" Style="padding-bottom: 10px;">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Clientes" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress="return kp(event)">
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar a algún Cliente?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div><BR>
-        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Cliente/ConsultarClientes.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Consultar Clientes">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
             <div class="table-responsive">
                 <table class="table">
                   <thead>

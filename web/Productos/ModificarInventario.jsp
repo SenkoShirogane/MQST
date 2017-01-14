@@ -118,7 +118,7 @@
             <div align='center'>
                 <h1>Imagen Actual</h1>
                 <img src="/MQST/F?Pieza=<%out.println(resultados.getObject("idAlmacen"));%>" class="img-rounded img img-responsive" 
-                                 Style="width:200px;height:240px;display:inline;" alt=" Imagen de la pieza">
+                                 Style="width:300px;height:300px;display:inline;" alt=" Imagen de la pieza">
             </div><BR>
             <div class='table-responsive slideanim'>
                 <table class='table'>

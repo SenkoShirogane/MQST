@@ -108,23 +108,24 @@
             </div>
         </nav>
         <h1 align="center">Inventario de Piezas</h1>
-        <h3 align="center">Aquí puedes ver todos los piezas disponibles en el almacen.</h3><br>
-        <form action="/MQST/Productos/AgregarPieza.jsp" method="post" class="form-horizontal">
-                <div class="col-md-offset-5 col-md-2">
-                    <input type="submit" class="btn btn-group-justified" value="Agregar Pieza">
-                </div>
-        </form>
-        <!-- Busqueda -->
+        <h3 align="center">Aquí puedes ver todos los piezas disponibles en el almacen.</h3>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Pieza" name="Buscar" id="Busqueda" 
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar alguna Pieza?" name="Buscar"
                                minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Productos/AgregarPieza.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Agregar una Pieza">
                 </form>
             </div>
         </div>

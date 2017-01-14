@@ -36,7 +36,6 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <style>
-            h4{ color:white; }
             .container-fluid { padding-top: 10px; padding-bottom: 10px; }
         </style>
     <body id="Inicio">
@@ -109,26 +108,28 @@
             </div>
         </nav>
         <h1 align="center">Catálogo de Órdenes</h1>
-        <h3 align="center">Aquí puedes ver todas las órdenes realizadas hasta la fecha.</h3><br>
-        <form action="../Productos/GestionProductos.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Agregar Orden">
-            </div>
-        </form>
+        <h3 align="center">Aquí puedes ver todas las órdenes realizadas hasta la fecha.</h3>
         <div class="container-fluid text-center">
-            <div class="col-md-8 col-md-offset-2">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Orden" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress="return kp(event)">
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar alguna Orden?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div><BR>
-        <div class="container">
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Ordenes/AgregarOrden.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Agregar una Orden">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
         <div class="panel-group" id="accordion">
         <div class="col-md-8 col-md-offset-2">
         <%  
@@ -155,21 +156,26 @@
                             Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                      <%out.println(resulta2.getString("Apellido1"));%>
                                      <%out.println(resulta2.getString("Apellido2"));%> ||   
-                            Estado de la orden: <%out.println(resulta2.getString("edo"));%> 
+                            Estado de la orden: <%out.println(resulta2.getString("edo"));%> ||
+                            SIN PIEZAS
                         </a>
                       </h4>
                     </div>
                     <div id="collapse<%out.print(resulta2.getInt("id"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <p>ID de la orden: <%out.println(resulta2.getInt("id"));%> </p>
-                          <p>Nombre del Cliente: <%out.println(resulta2.getString("Nombre"));%>
+                            <div class="col-md-6">
+                                <p>ID de la orden: <%out.println(resulta2.getInt("id"));%> </p>
+                                <p>Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                               <%out.println(resulta2.getString("Apellido1"));%>
                                               <%out.println(resulta2.getString("Apellido2"));%> </p>
-                          <p>Costo de la orden: $<%out.println(resulta2.getInt("costo"));%></p>
-                          <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
-                          <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
-                          <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
-                          <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
+                                <p>Costo de la orden: $<%out.println(resulta2.getInt("costo"));%></p>
+                                <p>Estado de la orden: <%out.println(resulta2.getString("edo"));%></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
+                                <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
+                                <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -192,23 +198,28 @@
                             Cliente: <%out.println(resulta2.getString("Nom"));%>
                                  <%out.println(resulta2.getString("Paterno1"));%>
                                  <%out.println(resulta2.getString("Materno1"));%>  ||
-                            Estado de la orden: <%out.println(resulta2.getString("edo"));%>
+                            Estado de la orden: <%out.println(resulta2.getString("edo"));%> ||
+                            PIEZA: <%out.println(resulta2.getString("Nomb"));%>
                         </a>
                       </h4>
                     </div>
                     <div id="collapse<%out.print(resulta2.getInt("idOS"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <p>ID de la orden: <%out.println(resulta2.getInt("idOS"));%> </p>
-                          <p>Nombre del Cliente: <%out.println(resulta2.getString("Nom"));%>
+                            <div class="col-md-6">
+                                <p>ID de la orden: <%out.println(resulta2.getInt("idOS"));%> </p>
+                                <p>Cliente: <%out.println(resulta2.getString("Nom"));%>
                                               <%out.println(resulta2.getString("Paterno1"));%>
                                               <%out.println(resulta2.getString("Materno1"));%> </p>
-                          <p>Costo de la orden: $<%out.println(resulta2.getInt("cost"));%></p>
-                          <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
-                          <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
-                          <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
-                          <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
-                          <p>Nombre de la Pieza: <%out.println(resulta2.getString("nomb"));%></p>
-                          <p>Cantidad de la Pieza: <%out.println(resulta2.getString("cantp"));%></p>
+                                <p>Costo de la orden: $<%out.println(resulta2.getInt("cost"));%></p>
+                                <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
+                                <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Estado de la orden: <%out.println(resulta2.getString("edo"));%></p>
+                                <p>Nombre de la Pieza: <%out.println(resulta2.getString("nomb"));%></p>
+                                <p>Cantidad de la Pieza: <%out.println(resulta2.getString("cantp"));%></p>
+                                <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -240,21 +251,26 @@
                             Cliente: <%out.println(resulta3.getString("Nombre"));%>
                                      <%out.println(resulta3.getString("Apellido1"));%>
                                      <%out.println(resulta3.getString("Apellido2"));%> ||   
-                            Estado de la orden: <%out.println(resulta3.getString("edo"));%> 
+                            Estado de la orden: <%out.println(resulta3.getString("edo"));%> ||
+                            SIN PIEZAS
                         </a>
                       </h4>
                     </div>
                     <div id="collapse<%out.print(resulta3.getInt("id"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <p>ID de la orden: <%out.println(resulta3.getInt("id"));%> </p>
-                          <p>Nombre del Cliente: <%out.println(resulta3.getString("Nombre"));%>
+                            <div class="col-md-6">
+                                <p>ID de la orden: <%out.println(resulta3.getInt("id"));%> </p>
+                                <p>Cliente: <%out.println(resulta3.getString("Nombre"));%>
                                               <%out.println(resulta3.getString("Apellido1"));%>
                                               <%out.println(resulta3.getString("Apellido2"));%> </p>
-                          <p>Costo de la orden: $<%out.println(resulta3.getInt("costo"));%></p>
-                          <p>Fecha de Creación: <%out.println(resulta3.getString("fec1"));%></p>
-                          <p>Fecha de Entrega: <%out.println(resulta3.getString("fec2"));%></p>
-                          <p>Estado: <%out.println(resulta3.getString("edo"));%></p>
-                          <p>Especificaciones: <%out.println(resulta3.getString("det"));%></p>
+                                <p>Costo de la orden: $<%out.println(resulta3.getInt("costo"));%></p>
+                                <p>Estado de la orden: <%out.println(resulta3.getString("edo"));%></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Fecha de Creación: <%out.println(resulta3.getString("fec1"));%></p>
+                                <p>Fecha de Entrega: <%out.println(resulta3.getString("fec2"));%></p>
+                                <p>Especificaciones: <%out.println(resulta3.getString("det"));%></p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -281,23 +297,28 @@
                             Cliente: <%out.println(resulta4.getString("Nom"));%>
                                  <%out.println(resulta4.getString("Paterno1"));%>
                                  <%out.println(resulta4.getString("Materno1"));%>  ||
-                            Estado de la orden: <%out.println(resulta4.getString("edo"));%>
+                            Estado de la orden: <%out.println(resulta4.getString("edo"));%> ||
+                            PIEZA: <%out.println(resulta4.getString("Nomb"));%>
                         </a>
                       </h4>
                     </div>
                     <div id="collapse<%out.print(resulta4.getInt("idOS"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                          <p>ID de la orden: <%out.println(resulta4.getInt("idOS"));%> </p>
-                          <p>Nombre del Cliente: <%out.println(resulta4.getString("Nom"));%>
+                            <div class="col-md-6">
+                                <p>ID de la orden: <%out.println(resulta4.getInt("idOS"));%> </p>
+                                <p>Cliente: <%out.println(resulta4.getString("Nom"));%>
                                               <%out.println(resulta4.getString("Paterno1"));%>
                                               <%out.println(resulta4.getString("Materno1"));%> </p>
-                          <p>Costo de la orden: $<%out.println(resulta4.getInt("cost"));%></p>
-                          <p>Fecha de Creación: <%out.println(resulta4.getString("fec1"));%></p>
-                          <p>Fecha de Entrega: <%out.println(resulta4.getString("fec2"));%></p>
-                          <p>Estado: <%out.println(resulta4.getString("edo"));%></p>
-                          <p>Especificaciones: <%out.println(resulta4.getString("det"));%></p>
-                          <p>Nombre de la Pieza: <%out.println(resulta4.getString("nomb"));%></p>
-                          <p>Cantidad de la Pieza: <%out.println(resulta4.getString("cantp"));%></p>
+                                <p>Costo de la orden: $<%out.println(resulta4.getInt("cost"));%></p>
+                                <p>Fecha de Creación: <%out.println(resulta4.getString("fec1"));%></p>
+                                <p>Fecha de Entrega: <%out.println(resulta4.getString("fec2"));%></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p>Estado de la orden: <%out.println(resulta4.getString("edo"));%></p>
+                                <p>Nombre de la Pieza: <%out.println(resulta4.getString("nomb"));%></p>
+                                <p>Cantidad de la Pieza: <%out.println(resulta4.getString("cantp"));%></p>
+                                <p>Especificaciones: <%out.println(resulta4.getString("det"));%></p>
+                            </div>
                         </div>
                     </div>
                 </div>

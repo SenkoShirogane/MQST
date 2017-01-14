@@ -35,8 +35,8 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <style>
-            h4{ color:white; }
             .container-fluid { padding-top: 10px; padding-bottom: 10px; }
+            .btn {width: 100%} .def{ border-color: black;}
         </style>
     </head>
     <body id="Inicio">
@@ -57,7 +57,6 @@
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
-                    <!-- Expandible Catalogo -->
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#"> 
                             <span class="glyphicon glyphicon-th-list"></span> Catálogo <span class="caret"></span></a>
@@ -88,7 +87,7 @@
                                     <span class="glyphicon glyphicon-list-alt"></span> Proveedores</a></li>
                             <li><a href="../Cliente/GestionarClientes.jsp">
                                     <span class="glyphicon glyphicon-user"></span> Clientes</a></li>
-                            <li class="active"><a href="">
+                            <li class="active"><a>
                                     <span class="glyphicon glyphicon-edit"></span> Órdenes</a></li>
                             <li><a href="../Administrador/GestionarAdministradores.jsp">
                                     <span class="glyphicon glyphicon-trash"></span> Eliminar Administradores</a></li>
@@ -128,8 +127,8 @@
                     </div>
                 </form>
             </div>
-        </div><BR>
-        <div class="container">
+        </div>
+        <div class="container-fluid">
         <div class="panel-group" id="accordion">
         <div class="col-md-8 col-md-offset-2">
         <%  
@@ -161,8 +160,7 @@
                     </div>
                     <div id="collapse<%out.print(resulta2.getInt("id"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class='container'>
-                            <div class='col-md-6'>
+                            <div class='col-md-9'>
                                 <p>ID de la orden: <%out.println(resulta2.getInt("id"));%> </p>
                                 <p>Nombre del Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                                     <%out.println(resulta2.getString("Apellido1"));%>
@@ -173,7 +171,7 @@
                                 <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
                                 <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
                             </div>
-                            <div class='col-md-6'>
+                            <div class='col-md-3'>
                                 <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar2()'>
                                     <input type='hidden' value="<%out.print(resulta2.getInt("id"));%>" name='idOS'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
@@ -188,13 +186,12 @@
                                     <input type='hidden' name='Esp' value="<%out.println(resulta2.getString("det"));%>" required>
                                     <input type='hidden' name='Costo' value="<%out.println(resulta2.getInt("costo"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta2.getString("Nombre"));%>" required>
-                                    <input type='submit' class='btn btn-default' value='Agregar'>
+                                    <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
                                     <input type='hidden' name='OrdenUbi' value="<%out.println(resulta2.getInt("id"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -223,8 +220,7 @@
                     </div>
                     <div id="collapse<%out.print(resulta.getInt("idOS"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class='container'>
-                            <div class='col-md-6'>
+                            <div class='col-md-9'>
                                 <p>ID de la orden: <%out.println(resulta.getInt("idOS"));%> </p>
                                 <p>Nombre del Cliente: <%out.println(resulta.getString("Nom"));%>
                                                     <%out.println(resulta.getString("Paterno1"));%>
@@ -237,7 +233,7 @@
                                 <p>Nombre de la Pieza: <%out.println(resulta.getString("nomb"));%></p>
                                 <p>Cantidad de la Pieza: <%out.println(resulta.getString("cantp"));%></p>
                             </div>
-                            <div class='col-md-6'>
+                            <div class='col-md-3'>
                                 <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar2()'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("idOS"));%>" name='idO'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("id"));%>" name='id'>
@@ -253,13 +249,12 @@
                                     <input type='hidden' name='Esp' value="<%out.println(resulta.getString("det"));%>" required>
                                     <input type='hidden' name='Costo' value="<%out.println(resulta.getInt("cost"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta.getString("Nom"));%>" required>
-                                    <input type='submit' class='btn btn-default' value='Agregar'>
+                                    <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
                                     <input type='hidden' name='OrdenUbi' value="<%out.println(resulta.getInt("idOS"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -295,8 +290,7 @@
                     </div>
                     <div id="collapse<%out.print(resulta2.getInt("id"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class='container'>
-                            <div class='col-md-6'>
+                            <div class='col-md-9'>
                                 <p>ID de la orden: <%out.println(resulta2.getInt("id"));%> </p>
                                 <p>Nombre del Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                                     <%out.println(resulta2.getString("Apellido1"));%>
@@ -307,7 +301,7 @@
                                 <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
                                 <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
                             </div>
-                            <div class='col-md-6'>
+                            <div class='col-md-3'>
                                 <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar2()'>
                                     <input type='hidden' value="<%out.print(resulta2.getInt("id"));%>" name='idOS'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
@@ -322,13 +316,12 @@
                                     <input type='hidden' name='Esp' value="<%out.println(resulta2.getString("det"));%>" required>
                                     <input type='hidden' name='Costo' value="<%out.println(resulta2.getInt("costo"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta2.getString("Nombre"));%>" required>
-                                    <input type='submit' class='btn btn-default' value='Agregar'>
+                                    <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
                                     <input type='hidden' name='OrdenUbi' placeholder='' required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
-                            </div>
                             </div>
                         </div>
                     </div>
@@ -360,8 +353,7 @@
                     </div>
                     <div id="collapse<%out.print(resulta.getInt("idOS"));%>" class="panel-collapse collapse">
                         <div class="panel-body">
-                            <div class='container'>
-                            <div class='col-md-6'>
+                            <div class='col-md-9'>
                                 <p>ID de la orden: <%out.println(resulta.getInt("idOS"));%> </p>
                                 <p>Nombre del Cliente: <%out.println(resulta.getString("Nom"));%>
                                                     <%out.println(resulta.getString("Paterno1"));%>
@@ -374,7 +366,7 @@
                                 <p>Nombre de la Pieza: <%out.println(resulta.getString("nomb"));%></p>
                                 <p>Cantidad de la Pieza: <%out.println(resulta.getString("cantp"));%></p>
                             </div>
-                            <div class='col-md-6'>
+                            <div class='col-md-3'>
                                 <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar2()'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("idOS"));%>" name='idO'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("id"));%>" name='id'>
@@ -390,13 +382,12 @@
                                     <input type='hidden' name='Esp' value="<%out.println(resulta.getString("det"));%>" required>
                                     <input type='hidden' name='Costo' value="<%out.println(resulta.getInt("cost"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta.getString("Nom"));%>" required>
-                                    <input type='submit' class='btn btn-default' value='Agregar'>
+                                    <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
                                     <input type='hidden' name='OrdenUbi' placeholder='' required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
-                            </div>
                             </div>
                         </div>
                     </div>

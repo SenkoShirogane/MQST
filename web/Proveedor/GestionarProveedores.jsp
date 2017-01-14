@@ -107,34 +107,32 @@
             </div>
         </nav>
         <h1 align="center">Gestionar Proveedores</h1>
-        <h3 align="center">Aquí puedes consultar y eliminar a los Proveedores.</h3><BR>
+        <h3 align="center">Aquí puedes consultar y eliminar a los Proveedores.</h3>
         <% ElimProveedor = request.getParameter("EmpresaEl");
             if(ElimProveedor==null){
             }else{
                 ResultSet rs2 = base2.borrar("call EliminaProveedor('"+ElimProveedor+"');");
                 out.println("<script> location.replace('/MQST/Proveedor/GestionarProveedores.jsp'); </script>");
             } %>
-        <form action="../Proveedor/AgregarProveedor.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Agregar Proveedor">
-            </div>
-        </form>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4" Style="padding-bottom: 10px;">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Proveedor" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress='return kp(event)'>
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar a algún Proveedor?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div><BR>
-
-        <div class="container">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Proveedor/AgregarProveedor.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Agregar un Proveedor">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
             <div class="table-responsive">
                 <table class="table">                                     
                   <thead>

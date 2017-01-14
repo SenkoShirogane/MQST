@@ -109,27 +109,28 @@
             </div>
         </nav>
         <h1 align="center">Catálogo de Clientes</h1>
-        <h3 align="center">Aquí puedes ver a todos los clientes registrados.</h3><BR>
-        <form action="../Cliente/GestionarClientes.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Gestionar Clientes">
-            </div>
-        </form>
+        <h3 align="center">Aquí puedes ver a todos los clientes registrados.</h3>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">  
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Clientes" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress="return kp(event)">
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar a algún Cliente?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
-        </div><BR>
-        <div class="container">
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Cliente/GestionarClientes.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Gestionar Clientes">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">
         <div class="panel-group" id="accordion">
         <div class="col-md-8 col-md-offset-2">
         <%  BuscarCliente = request.getParameter("Buscar");
@@ -170,7 +171,6 @@
                 </div>
             </div>
         </div>
-        
         <% } %>
         <% } else{
                 ResultSet rs2 = base2.consulta("select * from ConsultaCliente where (Nombre like '%"+BuscarCliente+"%' "
@@ -178,6 +178,7 @@
                     + "OR Municipio like '%"+BuscarCliente+"%' OR Estado like '%"+BuscarCliente+"%' OR Email like '%"+BuscarCliente+"%' "
                     + "OR EstadoUsuario like '%"+BuscarCliente+"%' );");
         %>  
+        <h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarCliente%>".</h2>
         <%while(rs2.next()){ %>
         <div class="panel panel-primary">
             <div class="panel-heading">

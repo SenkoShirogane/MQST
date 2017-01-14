@@ -106,21 +106,23 @@
         </nav>
         <h1 align="center">Catálogo de Productos</h1>
         <h3 align="center">Aquí puedes ver todos los productos disponibles para los clientes.</h3><br>
-        <form action="../Productos/GestionProductos.jsp" method="get" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Gestionar Catálogo">
-            </div>
-        </form>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Producto" name="Buscar" id="Busqueda" 
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar algún Producto?" name="Buscar"
                                minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="../Productos/GestionProductos.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Gestionar Catálogo">
                 </form>
             </div>
         </div>

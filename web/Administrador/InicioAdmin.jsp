@@ -111,18 +111,12 @@
         </nav>
         <h1 align="center">Gestionar Inventario</h1>
         <h3 align="center">Aquí puedes ver la visibilidad de los productos del inventario.</h3><BR>
-        <div class="container">
-        <form action="/MQST/Productos/AgregarPieza.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Agregar Pieza">
-            </div>
-        </form>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Pieza" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress="return kp(event)">
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar alguna Pieza?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
@@ -130,91 +124,90 @@
                 </form>
             </div>
         </div>
-        <!--Tabla x3 -->
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Productos/AgregarPieza.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Agregar una Pieza">
+                </form>
+            </div>
+        </div>
+        <div class="container-fluid">    
         <%
         BuscarPieza = request.getParameter("Buscar");
         if(BuscarPieza==null){
-                
-        while(resultados.next()) {
-            
-        out.println("<div class='table-responsive'>");
-         out.println("<table class='table'>");
-            out.println("<thead>");
-                out.println("<tr>");
-                    out.println("<th>Imagen</th>");
-                    out.println("<th>Nombre</th>");
-                    out.println("<th>Proveedor</th>");
-                    out.println("<th>Cantidad</th>");
-                    out.println("<th>Precio</th>");
-                    out.println("<th>Estado</th>");
-                    out.println("<th>¿Modificar?</th>");
-                    out.println("<th>¿Eliminar?</th>");
-                out.println("</tr>");
-            out.println("</thead>");
-            out.println("<tbody>");
-                    out.println("<tr>");
-                        out.println("<form action='../Productos/ModificarInventario.jsp' method='post'>");
-                            out.println("<td><img src=\"/MQST/F?Pieza=" + resultados.getString("idAlmacen") + "\" style='width: 200px;height: 240px' ></td>");
-                            out.println("<td>"+resultados.getString("Producto")+"</td>");
-                            out.println("<td>"+resultados.getString("Empresa")+"</td>");
-                            out.println("<td>"+resultados.getString("Cantidad")+"</td>");
-                            out.println("<td>"+resultados.getString("Precio")+"</td>");
-                            out.println("<td>"+resultados.getString("Edo")+"</td>");
-                            out.println("<input type='hidden' name='name' value="+resultados.getString("Producto")+">");
-                            out.println("<td><input type='submit' class='btn btn-info' value='Modificar'></td>");
-                        out.println("</form>");
-
-                        out.println("<form action='/MQST/EliminarPza' method='get' onSubmit='return confMod()' >");
-                            out.println("<input type='hidden' value="+resultados.getString("Producto")+" name='nombreP'>");
-                            out.println("<td><input type='submit' class='btn btn-danger' value='Eliminar'></td>");    
-                        out.println("</form>");
-                    out.println("</tr>");
-            out.println("</tbody>");
-        out.println("</table>");
-      out.println("</div>");         
-          
-        } } else {
+            while(resultados.next()) {
+    %> 
+            <div class=" col-md-offset-0 col-md-6" Style="padding-bottom: 40px; padding-right: 0px;"> 
+                <div id="Foto" class="col-md-offset-0 col-md-5" align="center">
+                    <img src="/MQST/F?Pieza=<%out.println(resultados.getObject("idAlmacen"));%>" class="img-rounded img img-responsive"
+                         Style="width:260px;height:260px;display:inline;" alt="Imagen de la Pieza">
+                </div>
+                <div class="col-md-offset-0 col-md-7">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 align="center"><%out.println(resultados.getObject("Producto"));%></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-8"><p><strong>Proveedor:</strong> <%out.println(resultados.getString("Empresa"));%> </div>
+                            <div class="col-md-4"><p><strong>$<%out.println(resultados.getObject("Precio"));%></strong> </div>
+                            <div class="col-md-6"><p><strong>Cantidad:</strong> <%out.println(resultados.getObject("cantidad"));%> </div>
+                            <div class="col-md-6"><p><strong>Estado:</strong> <%out.println(resultados.getString("Edo"));%> </div>
+                            <div class="col-md-6">
+                                <form action='../Productos/ModificarInventario.jsp' method='post'>
+                                    <input type='hidden' name='name' value="<%out.print(resultados.getString("Producto"));%>" >
+                                    <input type='submit' class='btn btn-info' value="Modificar" style="width: 100%;" >
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form action='/MQST/EliminarPza' method='get' onSubmit='return confirmar()' > 
+                                    <input type='hidden' value="<%out.print(resultados.getString("Producto"));%>" name='nombreP'>
+                                    <input type='submit' class='btn btn-danger' value='Eliminar' style="width: 100%;" >
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    <%  } } else {
                 ResultSet rs2 = bd.consulta("select * from ConsultaPieza where (Producto like '%"+BuscarPieza+"%' "
                 + "or Edo like '%"+BuscarPieza+"%' or Detalles like '%"+BuscarPieza+"%' or Empresa like '%"+BuscarPieza+"%' "
                 + "or Cantidad like '%"+BuscarPieza+"%' or Precio like '%"+BuscarPieza+"%') ");
-        out.println("<h2 align='center'>Éstos son los Resultados que se encontraron para '"+BuscarPieza+"'.</h2> ");  
-        while(rs2.next()){ 
-        out.println("<div class='table-responsive'>");
-            out.println("<table class='table'>");
-                out.println("<thead>");
-                    out.println("<tr>");
-                        out.println("<th>Imagen</th>");
-                        out.println("<th>Nombre</th>");
-                        out.println("<th>Proveedor</th>");
-                        out.println("<th>Cantidad</th>");
-                        out.println("<th>Precio</th>");
-                        out.println("<th>Estado</th>");
-                        out.println("<th>¿Modificar?</th>");
-                        out.println("<th>¿Eliminar?</th>");
-                    out.println("</tr>");
-                out.println("</thead>");
-                out.println("<tbody>");
-                        out.println("<tr>");
-                            out.println("<form action='../Productos/ModificarInventario.jsp' method='post'>");
-                                out.println("<td><img src=\"/MQST/F?Pieza=" + rs2.getString("idAlmacen") + "\" style='width: 200px;height: 240px' ></td>");
-                                out.println("<td>"+rs2.getString("Producto")+"</td>");
-                                out.println("<td>"+rs2.getString("Empresa")+"</td>");
-                                out.println("<td>"+rs2.getString("Cantidad")+"</td>");
-                                out.println("<td>"+rs2.getString("Precio")+"</td>");
-                                out.println("<td>"+rs2.getString("Edo")+"</td>");
-                                out.println("<input type='hidden' name='name' value="+rs2.getString("Producto")+">");
-                                out.println("<td><input type='submit' class='btn btn-info' value='Modificar'></td>");
-                            out.println("</form>");
-                            
-                            out.println("<form action='/MQST/EliminarPza' method='get' onSubmit='return confMod()' >");
-                                out.println("<input type='hidden' value="+rs2.getString("Producto")+" name='nombreP'>");
-                                out.println("<td><input type='submit' class='btn btn-danger' value='Eliminar'></td>");    
-                            out.println("</form>");
-                        out.println("</tr>");
-                out.println("</tbody>");
-            out.println("</table>");
-          out.println("</div>");
-        } } 
+            out.println("<h2 align='center'>Éstos son los Resultados que se encontraron para '"+BuscarPieza+"'.</h2> ");  
+            while(rs2.next()){ 
+    %>
+            <div class=" col-md-offset-0 col-md-6" Style="padding-bottom: 40px; padding-right: 0px;"> 
+                <div id="Foto" class="col-md-offset-0 col-md-5" align="center">
+                    <img src="/MQST/F?Pieza=<%out.println(rs2.getObject("idAlmacen"));%>" class="img-rounded img img-responsive"
+                         Style="width:260px;height:260px;display:inline;" alt="Imagen de la Pieza">
+                </div>
+                <div class="col-md-offset-0 col-md-7">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 align="center"><%out.println(rs2.getObject("Producto"));%></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-md-8"><p><strong>Proveedor:</strong> <%out.println(rs2.getString("Empresa"));%> </div>
+                            <div class="col-md-4"><p><strong>$<%out.println(rs2.getObject("Precio"));%></strong> </div>
+                            <div class="col-md-6"><p><strong>Cantidad:</strong> <%out.println(rs2.getObject("cantidad"));%> </div>
+                            <div class="col-md-6"><p><strong>Estado:</strong> <%out.println(rs2.getString("Edo"));%> </div>
+                            <div class="col-md-6">
+                                <form action='../Productos/ModificarInventario.jsp' method='post'>
+                                    <input type='hidden' name='name' value="<%out.print(rs2.getString("Producto"));%>" >
+                                    <input type='submit' class='btn btn-info' value="Modificar" style="width: 100%;" >
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form action='/MQST/EliminarPza' method='get' onSubmit='return confirmar()' > 
+                                    <input type='hidden' value="<%out.print(rs2.getString("Producto"));%>" name='nombreP'>
+                                    <input type='submit' class='btn btn-danger' value='Eliminar' style="width: 100%;" >
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+   <%
+        } }  
 
     } catch (Exception e) {
            out.println("Excepcion "+e);

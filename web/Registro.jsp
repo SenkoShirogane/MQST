@@ -205,7 +205,7 @@
                             <button class="btn btn-danger pull-left" data-dismiss="modal">
                                 <span class="glyphicon glyphicon-remove"></span> Salir del Inicio de Sesión </button>
                             ¿Aún no estás registrado? <a href="/MQST/Registro.jsp">Registrarse</a><BR>
-                            <a>¿Olvidaste tu Contraseña?</a>
+                            <a data-toggle="tooltip" title="Por el momento no está disponible esta opción.">¿Olvidaste tu Contraseña?</a>
                         </div>
                     </form>
                 </div>

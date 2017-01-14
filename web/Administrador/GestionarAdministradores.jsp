@@ -49,7 +49,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span> 
                 </button>
-                <a class="navbar-brand">
+                <a class="navbar-brand" href="/MQST/index.jsp">
                     <span class="glyphicon glyphicon-home"></span> Inicio</a>
               </div>
               <div class="collapse navbar-collapse" id="myNavbar">
@@ -109,78 +109,78 @@
             </div>
         </nav>
         <h1 align="center">Eliminar Administradores</h1>
-        <h3 align="center">Aquí puedes consultar y eliminar a los administradores.</h3><BR>
-        <form action="../Administrador/ConsultarAdministradores.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Consultar Administradores">
-            </div>
-        </form>
+        <h3 align="center">Aquí puedes consultar y eliminar a los administradores.</h3>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Administrador" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress='return kp(event)'>
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar a algún Administrador?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i>
-                            </button>
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
                 </form>
             </div>
         </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Administrador/ConsultarAdministradores.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Consultar Administradores">
+                </form>
+            </div>
+        </div>
         <div class="container-fluid">
-            <div class='container'>
-                <p align="center"> Recuerda que sólo puedes registrar administradores en la aplicación local.
-                <div class='table-responsive'>
-                    <table class='table'>
-                        <thead>
+            <p align="center"> Recuerda que sólo puedes registrar administradores en la aplicación local.
+            <div class='table-responsive'>
+                <table class='table'>
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Nombre</th>
+                            <th>Email</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+            <%  BuscarAdmin = request.getParameter("Buscar");
+                if(BuscarAdmin==null){
+                    while(resultados.next()){ %>
+                        <form action='/MQST/GestionAdmin' method='get' onSubmit='return confirmar()'>
                             <tr>
-                                <th>Usuario</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th></th>
+                                <input type='hidden' name='User' value='<%out.print(resultados.getString("Usuario"));%>' required>
+                                <input type='hidden' name='Pass' value='<%out.print(resultados.getString("Contrasena"));%>' required>
+                                <td><%out.println(resultados.getObject("Usuario"));%></td>
+                                <td><%out.println(resultados.getObject("Nombre"));%> 
+                                    <%out.println(resultados.getObject("Apellido_Paterno"));%> 
+                                    <%out.println(resultados.getObject("Apellido_Materno"));%></td>
+                                <td><%out.println(resultados.getObject("Email"));%></td>
+                                <td><input type='submit' class='btn btn-danger' value='Eliminar'></td>
                             </tr>
-                        </thead>
-                        <tbody>
-                <%  BuscarAdmin = request.getParameter("Buscar");
-                    if(BuscarAdmin==null){
-                        while(resultados.next()){ %>
-                            <form action='/MQST/GestionAdmin' method='get' onSubmit='return confirmar()'>
-                                <tr>
-                                    <input type='hidden' name='User' value='<%out.print(resultados.getString("Usuario"));%>' required>
-                                    <input type='hidden' name='Pass' value='<%out.print(resultados.getString("Contrasena"));%>' required>
-                                    <td><%out.println(resultados.getObject("Usuario"));%></td>
-                                    <td><%out.println(resultados.getObject("Nombre"));%> 
-                                        <%out.println(resultados.getObject("Apellido_Paterno"));%> 
-                                        <%out.println(resultados.getObject("Apellido_Materno"));%></td>
-                                    <td><%out.println(resultados.getObject("Email"));%></td>
-                                    <td><input type='submit' class='btn btn-danger' value='Eliminar'></td>
-                                </tr>
-                            </form>
-                <%      } 
-                    } else {
-                        ResultSet resulta2 = bd.consulta("select * from ConsultaAdmin where (Usuario like '%"+BuscarAdmin+"%' "
-                            + "or Apellido_Paterno like '%"+BuscarAdmin+"%' or Apellido_Materno like '%"+BuscarAdmin+"%' "
-                            + "or Email like '%"+BuscarAdmin+"%' ) ");  	
-                        while(resulta2.next()){  %>
-                            <form action='/MQST/GestionAdmin' method='get' onSubmit='return confirmar()'>
-                                <tr>
-                                    <input type='hidden' name='User' value='<%out.print(resulta2.getObject("Usuario"));%>' required>
-                                    <input type='hidden' name='Pass' value='<%out.println(resulta2.getObject("Contrasena"));%>' required>
-                                    <td><%out.println(resulta2.getObject("Usuario"));%></td>
-                                    <td><%out.println(resulta2.getObject("Nombre"));%> 
-                                        <%out.println(resulta2.getObject("Apellido_Paterno"));%> 
-                                        <%out.println(resulta2.getObject("Apellido_Materno"));%></td>
-                                    <td><%out.println(resulta2.getObject("Email"));%></td>
-                                    <td><input type='submit' class='btn btn-danger' value='Eliminar'></td>
-                                </tr>
-                            </form>
-                <%      }
-                    } %>
-                        </tbody>
-                    </table>
-                </div>
+                        </form>
+            <%      } 
+                } else {
+                    ResultSet resulta2 = bd.consulta("select * from ConsultaAdmin where (Usuario like '%"+BuscarAdmin+"%' "
+                        + "or Apellido_Paterno like '%"+BuscarAdmin+"%' or Apellido_Materno like '%"+BuscarAdmin+"%' "
+                        + "or Email like '%"+BuscarAdmin+"%' ) ");  %>
+                    <h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarAdmin%>".</h2>
+            <%      while(resulta2.next()){  %>
+                        <form action='/MQST/GestionAdmin' method='get' onSubmit='return confirmar()'>
+                            <tr>
+                                <input type='hidden' name='User' value='<%out.print(resulta2.getObject("Usuario"));%>' required>
+                                <input type='hidden' name='Pass' value='<%out.println(resulta2.getObject("Contrasena"));%>' required>
+                                <td><%out.println(resulta2.getObject("Usuario"));%></td>
+                                <td><%out.println(resulta2.getObject("Nombre"));%> 
+                                    <%out.println(resulta2.getObject("Apellido_Paterno"));%> 
+                                    <%out.println(resulta2.getObject("Apellido_Materno"));%></td>
+                                <td><%out.println(resulta2.getObject("Email"));%></td>
+                                <td><input type='submit' class='btn btn-danger' value='Eliminar'></td>
+                            </tr>
+                        </form>
+            <%      }
+                } %>
+                    </tbody>
+                </table>
             </div>
         </div>
         <% bd.cierraConexion();
