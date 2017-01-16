@@ -1,7 +1,7 @@
 <%-- 
     Document   : Ordenes
     Created on : 1/11/2016, 07:29:27 PM
-    Author     : CITLALLI
+    Author     : SENKO
 --%>
 
 <%@page import="java.sql.ResultSet"%>
@@ -110,21 +110,23 @@
         </nav>
         <h1 align="center">Gestionar Órdenes</h1>
         <h3 align="center">Aquí puedes ver el estado y la ubicación de las órdenes.</h3>
-        <form action="../Ordenes/AgregarOrden.jsp" method="post" class="form-horizontal">
-            <div class="col-md-offset-5 col-md-2">
-                <input type="submit" class="btn btn-group-justified" value="Agregar Orden">
-            </div>
-        </form>
         <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Orden" name="Buscar" id="Busqueda" 
-                               minlength="3" autofocus onkeypress="return kp(event)">
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar alguna Orden?" name="Buscar"
+                               minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
                         </div>
                     </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-12" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="/MQST/Ordenes/AgregarOrden.jsp" class="form-horizontal">
+                    <input type="submit" class="btn btn-block btn-primary" value="Agregar una Orden">
                 </form>
             </div>
         </div>
@@ -165,14 +167,14 @@
                                 <p>Nombre del Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                                     <%out.println(resulta2.getString("Apellido1"));%>
                                                     <%out.println(resulta2.getString("Apellido2"));%> </p>
-                                <p>Costo de la orden: $<%out.println(resulta2.getInt("costo"));%></p>
+                                <p>Costo de la orden: $<%out.print(resulta2.getString("costo"));%></p>
                                 <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
                                 <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
                                 <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
                                 <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
                             </div>
                             <div class='col-md-3'>
-                                <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar2()'>
+                                <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar()'>
                                     <input type='hidden' value="<%out.print(resulta2.getInt("id"));%>" name='idOS'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
                                 </form><BR>
@@ -182,14 +184,14 @@
                                     <input type='submit' class='btn btn-success' value='Modificar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/AgregarServicio.jsp' method='post'>
-                                    <input type='hidden' name='AgregarOrden' value="<%out.println(resulta2.getInt("id"));%>" required>
-                                    <input type='hidden' name='Esp' value="<%out.println(resulta2.getString("det"));%>" required>
-                                    <input type='hidden' name='Costo' value="<%out.println(resulta2.getInt("costo"));%>" required>
+                                    <input type='hidden' name='AgregarOrden' value="<%out.print(resulta2.getInt("id"));%>" required>
+                                    <input type='hidden' name='Esp' value="<%out.print(resulta2.getString("det"));%>" required>
+                                    <input type='hidden' name='Costo' value="<%out.print(resulta2.getString("costo"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta2.getString("Nombre"));%>" required>
                                     <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
-                                    <input type='hidden' name='OrdenUbi' value="<%out.println(resulta2.getInt("id"));%>" required>
+                                    <input type='hidden' name='OrdenUbi' value="<%out.print(resulta2.getInt("id"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
                             </div>
@@ -214,7 +216,8 @@
                             Cliente: <%out.println(resulta.getString("Nom"));%>
                                  <%out.println(resulta.getString("Paterno1"));%>
                                  <%out.println(resulta.getString("Materno1"));%>  ||
-                            Estado de la orden: <%out.println(resulta.getString("edo"));%>
+                            Estado de la orden: <%out.println(resulta.getString("edo"));%> ||
+                            Pieza necesaria: <%out.println(resulta.getString("nomb"));%>
                         </a>
                       </h4>
                     </div>
@@ -225,7 +228,7 @@
                                 <p>Nombre del Cliente: <%out.println(resulta.getString("Nom"));%>
                                                     <%out.println(resulta.getString("Paterno1"));%>
                                                     <%out.println(resulta.getString("Materno1"));%> </p>
-                                <p>Costo de la orden: $<%out.println(resulta.getInt("cost"));%></p>
+                                <p>Costo de la orden: $<%out.print(resulta.getString("cost"));%></p>
                                 <p>Fecha de Creación: <%out.println(resulta.getString("fec1"));%></p>
                                 <p>Fecha de Entrega: <%out.println(resulta.getString("fec2"));%></p>
                                 <p>Estado: <%out.println(resulta.getString("edo"));%></p>
@@ -234,7 +237,7 @@
                                 <p>Cantidad de la Pieza: <%out.println(resulta.getString("cantp"));%></p>
                             </div>
                             <div class='col-md-3'>
-                                <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar2()'>
+                                <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar()'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("idOS"));%>" name='idO'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("id"));%>" name='id'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
@@ -245,14 +248,14 @@
                                     <input type='submit' class='btn btn-success' value='Modificar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/AgregarServicio.jsp' method='post'>
-                                    <input type='hidden' name='AgregarOrden' value="<%out.println(resulta.getInt("idOS"));%>" required>
-                                    <input type='hidden' name='Esp' value="<%out.println(resulta.getString("det"));%>" required>
-                                    <input type='hidden' name='Costo' value="<%out.println(resulta.getInt("cost"));%>" required>
+                                    <input type='hidden' name='AgregarOrden' value="<%out.print(resulta.getInt("idOS"));%>" required>
+                                    <input type='hidden' name='Esp' value="<%out.print(resulta.getString("det"));%>" required>
+                                    <input type='hidden' name='Costo' value="<%out.print(resulta.getString("cost"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta.getString("Nom"));%>" required>
                                     <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
-                                    <input type='hidden' name='OrdenUbi' value="<%out.println(resulta.getInt("idOS"));%>" required>
+                                    <input type='hidden' name='OrdenUbi' value="<%out.print(resulta.getInt("idOS"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
                             </div>
@@ -263,8 +266,9 @@
                 }              
             }
             //Busqueda
-            } else { 
-            //Sin piezas
+            } else { %>
+            <h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarOrden%>".</h2>
+        <%  //Sin piezas
             int id;
             ResultSet resultados = bd.consulta("select * from ConsultaOSN");
             while(resultados.next()){
@@ -295,14 +299,14 @@
                                 <p>Nombre del Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                                     <%out.println(resulta2.getString("Apellido1"));%>
                                                     <%out.println(resulta2.getString("Apellido2"));%> </p>
-                                <p>Costo de la orden: $<%out.println(resulta2.getInt("costo"));%></p>
+                                <p>Costo de la orden: $<%out.print(resulta2.getString("costo"));%></p>
                                 <p>Fecha de Creación: <%out.println(resulta2.getString("fec1"));%></p>
                                 <p>Fecha de Entrega: <%out.println(resulta2.getString("fec2"));%></p>
                                 <p>Estado: <%out.println(resulta2.getString("edo"));%></p>
                                 <p>Especificaciones: <%out.println(resulta2.getString("det"));%></p>
                             </div>
                             <div class='col-md-3'>
-                                <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar2()'>
+                                <form action='/MQST/EliminarOrden' method='get' onSubmit='return confirmar()'>
                                     <input type='hidden' value="<%out.print(resulta2.getInt("id"));%>" name='idOS'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
                                 </form><BR>
@@ -312,14 +316,14 @@
                                     <input type='submit' class='btn btn-success' value='Modificar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/AgregarServicio.jsp' method='post'>
-                                    <input type='hidden' name='AgregarOrden' value="<%out.println(resulta2.getInt("id"));%>" required>
-                                    <input type='hidden' name='Esp' value="<%out.println(resulta2.getString("det"));%>" required>
-                                    <input type='hidden' name='Costo' value="<%out.println(resulta2.getInt("costo"));%>" required>
+                                    <input type='hidden' name='AgregarOrden' value="<%out.print(resulta2.getInt("id"));%>" required>
+                                    <input type='hidden' name='Esp' value="<%out.print(resulta2.getString("det"));%>" required>
+                                    <input type='hidden' name='Costo' value="<%out.print(resulta2.getString("costo"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta2.getString("Nombre"));%>" required>
                                     <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
-                                    <input type='hidden' name='OrdenUbi' placeholder='' required>
+                                    <input type='hidden' name='OrdenUbi' value="<%out.print(resulta2.getInt("id"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
                             </div>
@@ -347,7 +351,8 @@
                             Cliente: <%out.println(resulta.getString("Nom"));%>
                                  <%out.println(resulta.getString("Paterno1"));%>
                                  <%out.println(resulta.getString("Materno1"));%>  ||
-                            Estado de la orden: <%out.println(resulta.getString("edo"));%>
+                            Estado de la orden: <%out.println(resulta.getString("edo"));%> ||
+                            Pieza Necesaria: <%out.println(resulta.getString("nomb"));%>
                         </a>
                       </h4>
                     </div>
@@ -358,7 +363,7 @@
                                 <p>Nombre del Cliente: <%out.println(resulta.getString("Nom"));%>
                                                     <%out.println(resulta.getString("Paterno1"));%>
                                                     <%out.println(resulta.getString("Materno1"));%> </p>
-                                <p>Costo de la orden: $<%out.println(resulta.getInt("cost"));%></p>
+                                <p>Costo de la orden: $<%out.print(resulta.getString("cost"));%></p>
                                 <p>Fecha de Creación: <%out.println(resulta.getString("fec1"));%></p>
                                 <p>Fecha de Entrega: <%out.println(resulta.getString("fec2"));%></p>
                                 <p>Estado: <%out.println(resulta.getString("edo"));%></p>
@@ -367,7 +372,7 @@
                                 <p>Cantidad de la Pieza: <%out.println(resulta.getString("cantp"));%></p>
                             </div>
                             <div class='col-md-3'>
-                                <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar2()'>
+                                <Form action='/MQST/EliminarOrdenP' method='get' onSubmit='return confirmar()'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("idOS"));%>" name='idO'>
                                     <input type='hidden' value="<%out.print(resulta.getInt("id"));%>" name='id'>
                                     <input type='submit' class='btn btn-danger' value='Eliminar'>
@@ -378,14 +383,14 @@
                                     <input type='submit' class='btn btn-success' value='Modificar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/AgregarServicio.jsp' method='post'>
-                                    <input type='hidden' name='AgregarOrden' value="<%out.println(resulta.getInt("idOS"));%>" required>
-                                    <input type='hidden' name='Esp' value="<%out.println(resulta.getString("det"));%>" required>
-                                    <input type='hidden' name='Costo' value="<%out.println(resulta.getInt("cost"));%>" required>
+                                    <input type='hidden' name='AgregarOrden' value="<%out.print(resulta.getInt("idOS"));%>" required>
+                                    <input type='hidden' name='Esp' value="<%out.print(resulta.getString("det"));%>" required>
+                                    <input type='hidden' name='Costo' value="<%out.print(resulta.getString("cost"));%>" required>
                                     <input type='hidden' name='Nom' value="<%out.print(resulta.getString("Nom"));%>" required>
                                     <input type='submit' class='btn btn-default def' value='Agregar'>
                                 </form><BR>
                                 <form action='/MQST/Ordenes/Localizacion.jsp' method='post'>
-                                    <input type='hidden' name='OrdenUbi' placeholder='' required>
+                                    <input type='hidden' name='OrdenUbi' value="<%out.print(resulta.getInt("idOS"));%>" required>
                                     <input type='submit' class='btn btn-info' value='Ubicación'>
                                 </form>
                             </div>

@@ -136,15 +136,15 @@
                         </div>
                     <label class="control-label col-md-1">Costo:</label>
                     <div class="col-md-2">
-                        <input type="number" class="form-control" placeholder="Costo de la orden" 
-                           name="CostoO" min="0" required>
+                        <input type="text" class="form-control" placeholder="Costo de la orden" 
+                               name="CostoO" min="0" required onkeypress="return vn(event)">
                     </div>
                 </div>        
                 <div class="form-group">
                 <label class="control-label col-md-3">¿Necesita Piezas? </label>
                     <div class="col-md-2">
-                        <label class="radio-inline"><input type="radio" name="P" value="1" onclick="mostrar()" checked> Sí </label>
-                        <label class="radio-inline"><input type="radio" name="P" value="2" onclick="ocultar()"> No </label><br>
+                        <label class="radio-inline"><input type="radio" name="P" value='1' onclick="mostrar()" checked> Sí </label>
+                        <label class="radio-inline"><input type="radio" name="P" value='2' onclick="ocultar()"> No </label><br>
                     </div>
                 </div>
                 <div class="form-group" id="mostoc">
@@ -163,7 +163,7 @@
                     <label class="control-label col-md-1">Cantidad:</label>
                     <div class="col-md-2">
                         <input type="number" class="form-control" placeholder="Cantidad de la pieza" 
-                           name="CantidadPieza" min="0">
+                           name="CantidadPieza" min="1" value="1" required>
                     </div>
                 </div>
                 <div class="form-group">
@@ -171,9 +171,8 @@
                     <div class="col-md-3">
                         <input type="date" name="fecent" class="form-control" required>
                     </div>
-                    
                 </div>
-                <div class="help-block">El formato para la fecha es: AAAA/MM/DD</div>
+                <div class="help-block">El formato para la fecha es: DD/MM/AAAA</div>
                 <div class="form-group">
                 <label class="control-label col-md-3">Detalles:</label>
                     <div class="col-md-6">
@@ -183,7 +182,7 @@
                 </div><BR>
                 <div class="form-group">
                     <input type="reset" class="btn btn-default" value="Limpiar" style="width: 20%">
-                    <input type="submit" class="btn btn-primary" value="Iniciar" style="width: 20%">
+                    <input type="submit" class="btn btn-primary" value="Agregar Pieza" style="width: 20%">
                 </div>      
             </form>
                                      

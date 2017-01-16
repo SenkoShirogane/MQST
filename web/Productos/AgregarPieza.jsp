@@ -134,8 +134,8 @@
                 </div>
                 <label class="control-label col-md-1">Costo:</label>
                 <div class="col-md-2">
-                    <input type="number" class="form-control" placeholder="Costo de la pieza" 
-                           name="CostoPieza" min="0" max="20000" required>
+                    <input type="text" class="form-control" placeholder="Costo de la pieza" 
+                           name="CostoPieza" min="0" onkeypress="return vn(event)" required>
                 </div>
             </div>
             <div class="form-group">

@@ -110,7 +110,7 @@
             </div>
         </nav>
         <h1 align="center">Gestionar Inventario</h1>
-        <h3 align="center">Aquí puedes ver la visibilidad de los productos del inventario.</h3><BR>
+        <h3 align="center">Aquí puedes ver la visibilidad de los productos del inventario.</h3>
         <div class="container-fluid text-center">
             <div class="col-md-4 col-md-offset-4">
                 <form role="search">

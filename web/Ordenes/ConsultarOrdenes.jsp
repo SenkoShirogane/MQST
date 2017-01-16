@@ -156,8 +156,7 @@
                             Cliente: <%out.println(resulta2.getString("Nombre"));%>
                                      <%out.println(resulta2.getString("Apellido1"));%>
                                      <%out.println(resulta2.getString("Apellido2"));%> ||   
-                            Estado de la orden: <%out.println(resulta2.getString("edo"));%> ||
-                            SIN PIEZAS
+                            Estado de la orden: <%out.println(resulta2.getString("edo"));%>
                         </a>
                       </h4>
                     </div>
@@ -199,7 +198,7 @@
                                  <%out.println(resulta2.getString("Paterno1"));%>
                                  <%out.println(resulta2.getString("Materno1"));%>  ||
                             Estado de la orden: <%out.println(resulta2.getString("edo"));%> ||
-                            PIEZA: <%out.println(resulta2.getString("Nomb"));%>
+                            Pieza Necesaria: <%out.println(resulta2.getString("Nomb"));%>
                         </a>
                       </h4>
                     </div>
@@ -228,7 +227,7 @@
             }
             //Busqueda
             } else {   
-            
+            %><h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarOrden%>".</h2><%
             //Sin Piezas
             int id=0;
             int id2 = 0;
@@ -251,8 +250,7 @@
                             Cliente: <%out.println(resulta3.getString("Nombre"));%>
                                      <%out.println(resulta3.getString("Apellido1"));%>
                                      <%out.println(resulta3.getString("Apellido2"));%> ||   
-                            Estado de la orden: <%out.println(resulta3.getString("edo"));%> ||
-                            SIN PIEZAS
+                            Estado de la orden: <%out.println(resulta3.getString("edo"));%>
                         </a>
                       </h4>
                     </div>
@@ -298,7 +296,7 @@
                                  <%out.println(resulta4.getString("Paterno1"));%>
                                  <%out.println(resulta4.getString("Materno1"));%>  ||
                             Estado de la orden: <%out.println(resulta4.getString("edo"));%> ||
-                            PIEZA: <%out.println(resulta4.getString("Nomb"));%>
+                            Pieza Necesaria: <%out.println(resulta4.getString("Nomb"));%>
                         </a>
                       </h4>
                     </div>

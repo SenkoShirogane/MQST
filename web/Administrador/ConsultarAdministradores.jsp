@@ -157,6 +157,8 @@
                             <p>Nombre: <%out.println(resultados.getString("Nombre"));%>
                                        <%out.println(resultados.getString("Apellido_Paterno"));%>
                                        <%out.println(resultados.getString("Apellido_Materno"));%> </p>
+                        </div>
+                        <div class="col-md-6">
                             <p>Usuario: <%out.println(resultados.getString("Usuario"));%></p>
                             <p>Correo: <%out.println(resultados.getString("Email"));%></p>
                         </div>
@@ -187,8 +189,10 @@
                         <div class="col-md-6">
                             <p>ID del Administrador: <%out.println(resulta2.getInt("idA"));%> </p>
                             <p>Nombre: <%out.println(resulta2.getString("Nombre"));%>
-                                                 <%out.println(resulta2.getString("Apellido_Paterno"));%>
-                                                 <%out.println(resulta2.getString("Apellido_Materno"));%> </p>
+                                       <%out.println(resulta2.getString("Apellido_Paterno"));%>
+                                       <%out.println(resulta2.getString("Apellido_Materno"));%> </p>
+                        </div>
+                        <div class="col-md-6">
                             <p>Usuario: <%out.println(resulta2.getString("Usuario"));%></p>
                             <p>Correo: <%out.println(resulta2.getString("Email"));%></p>
                         </div>

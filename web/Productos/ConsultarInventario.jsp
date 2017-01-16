@@ -146,10 +146,16 @@
                             <h3 align="center"><%out.println(rs.getObject("Producto"));%></h3>
                         </div>
                         <div class="panel-body">
-                            <p><strong>Precio:</strong> <%out.println(rs.getObject("Precio"));%>
-                            <p><strong>Cantidad:</strong> <%out.println(rs.getObject("cantidad"));%>
-                            <p><strong>Proveedor:</strong> <%out.println(rs.getString("Empresa"));%>
-                            <p><strong>Detalles:</strong> <%out.println(rs.getString("Detalles"));%>
+                            <div class="col-md-5">
+                                <p><strong>$<%out.println(rs.getObject("Precio"));%></strong>
+                            </div>
+                            <div class="col-md-7">
+                                <p><strong>Cantidad:</strong> <%out.println(rs.getObject("cantidad"));%>
+                            </div>
+                            <div class="col-md-12">
+                                <p><strong>Proveedor:</strong> <%out.println(rs.getString("Empresa"));%>
+                                <p><strong>Detalles:</strong> <%out.println(rs.getString("Detalles"));%>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -172,10 +178,16 @@
                             <h3 align="center"><%out.println(rs2.getObject("Producto"));%></h3>
                         </div>
                         <div class="panel-body">
-                            <p><strong>Precio:</strong> <%out.println(rs2.getObject("Precio"));%>
-                            <p><strong>Cantidad:</strong> <%out.println(rs2.getObject("cantidad"));%>
-                            <p><strong>Proveedor:</strong> <%out.println(rs2.getString("Empresa"));%>
-                            <p><strong>Detalles:</strong> <%out.println(rs2.getString("Detalles"));%>
+                            <div class="col-md-5">
+                                <p><strong>$<%out.println(rs2.getObject("Precio"));%></strong>
+                            </div>
+                            <div class="col-md-7">
+                                <p><strong>Cantidad:</strong> <%out.println(rs2.getObject("cantidad"));%>
+                            </div>
+                            <div class="col-md-12">
+                                <p><strong>Proveedor:</strong> <%out.println(rs2.getString("Empresa"));%>
+                                <p><strong>Detalles:</strong> <%out.println(rs2.getString("Detalles"));%>
+                            </div>
                         </div>
                     </div>
                 </div>

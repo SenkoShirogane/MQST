@@ -114,11 +114,11 @@
         </nav>
         <h1 align="center">¡Aquí puedes gestionar el catálogo de productos!</h1><BR>
         <div class="container-fluid">
-            <div class="container-fluid">
-                <div class="col-md-offset-1 col-md-4">
-                    <ul class="nav nav-pills">
-                      <li class="active"><a data-toggle="pill" href="#home">Gestionar Productos</a></li>
-                      <li><a data-toggle="pill" href="#menu1">Agregar Productos</a></li>
+            <div class="col-md-12" style="padding-bottom: 30px;">
+                <div class="col-md-offset-2 col-md-8">
+                    <ul class="nav nav-pills nav-justified">
+                        <li class="active"><a data-toggle="pill" href="#home">Gestionar Productos</a></li>
+                        <li><a data-toggle="pill" href="#menu1">Agregar Productos</a></li>
                     </ul>
                 </div>
             </div>

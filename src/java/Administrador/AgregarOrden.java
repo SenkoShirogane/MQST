@@ -28,24 +28,112 @@ public class AgregarOrden extends HttpServlet {
             cost = request.getParameter("CostoO");
             mensaje = "";
         
-        int Opc;
-            Opc = Integer.parseInt(request.getParameter("P"));
-        int idC;
-            idC = Integer.parseInt(request.getParameter("Clientes"));  
-        int idE;
-            idE = Integer.parseInt(request.getParameter("EstadoOrden"));
-        int idP;
-            idP = Integer.parseInt(request.getParameter("Pza"));
-        int cant;
-            cant = Integer.parseInt(request.getParameter("CantidadPieza"));
+        int Opc = Integer.parseInt(request.getParameter("P")); //Sí necesita Piezas o no
+        int idC = Integer.parseInt(request.getParameter("Clientes"));  
+        int idE = Integer.parseInt(request.getParameter("EstadoOrden"));
+        int idP = Integer.parseInt(request.getParameter("Pza"));
+        int cant = Integer.parseInt(request.getParameter("CantidadPieza"));
             
         try{
-            
             HttpSession sesion = request.getSession();
             Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection (cadenaConexion,usuarioBD,clave);
             sentencia = conexion.createStatement();
             
+            /* Tuve que cambiar el orden de las validaciones x3 algo pasaba si quitaba los required así que puse extras tambíen :3*/
+            if(idC==0){
+                mensaje = "¡Debes escoger a un cliente!";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");
+            } else if(idE==0){
+                mensaje = "¡Debes seleccionar un Estado!";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");           
+            } else if(idC==0 && idE==0){
+                mensaje = "¡Ni el Cliente ni el Estado deben estar vacíos!";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");     
+            } else if (cost==null){
+                mensaje = "¡Dale un costo a la Orden!";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>"); 
+            } else if (fec==null){
+                mensaje = "Ingresa una fecha de entrega, el formato es DD/MM/AAAA";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");
+            } else if (det==null){
+                mensaje = "Ingresa los detalles para la orden.";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");
+            }
+                
+            if( Opc==1 ){
+                if(idP==0){
+                    mensaje = "¡Selecciona una Pieza!";
+                    out.println("<html>");
+                    out.println("<head></head>");
+                    out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                    out.println("</html>"); 
+                }else if (cant == 0){
+                    mensaje = "La cantidad de piezas no puede ser cero.";
+                    out.println("<html>");
+                    out.println("<head></head>");
+                    out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                    out.println("</html>");
+                } else if (idP==0 && cant==0){
+                    mensaje = "Debes escoger al menos una pieza y la cantidad debe ser mayor a cero";
+                    out.println("<html>");
+                    out.println("<head></head>");
+                    out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                    out.println("</html>");
+                }
+                resultados = sentencia.executeQuery("call NuevaOrden('"+idC+"', '"+idE+"', '"+det+"', '"+cost+"', '"+fec+"');");
+                while(resultados.next()){
+                    mensaje = resultados.getString("msj");
+                }
+                resultados = sentencia.executeQuery("call NuevaOrdenPza('"+idC+"', '"+det+"', '"+cost+"', '"+idP+"', '"+cant+"')");
+                while(resultados.next()){
+                    mensaje = resultados.getString("msj");
+                }
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); window.location='/MQST/Ordenes/Ordenes.jsp' \"></body>");
+                out.println("</html>");
+                
+            }else if( Opc==2 ){
+                idP=0;
+                cant=0;
+                resultados = sentencia.executeQuery("call NuevaOrden('"+idC+"', '"+idE+"', '"+det+"', '"+cost+"', '"+fec+"');");
+                while(resultados.next()){
+                    mensaje = resultados.getString("msj");
+                }
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); window.location='/MQST/Ordenes/Ordenes.jsp' \"></body>");
+                out.println("</html>");
+                
+            } else {
+                mensaje = "Selecciona si la orden debe tener piezas o no";
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");    
+            }
+            
+            
+            /* Validaciones Ari~ <3
             if(idC == 0){
                 mensaje = "¡Debes escoger a un cliente!";
                 
@@ -53,6 +141,7 @@ public class AgregarOrden extends HttpServlet {
                 out.println("<head></head>");
                 out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
                 out.println("</html>");
+                
             } else if(Opc == 1 && idP == 0 && cant > 0){
                 mensaje = "Debes escoger una pieza";
                 
@@ -60,8 +149,16 @@ public class AgregarOrden extends HttpServlet {
                 out.println("<head></head>");
                 out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
                 out.println("</html>");
-            }
-            else{
+                
+            } else if(Opc == 2 && idP == 0 && cant > 0){
+                mensaje = "Debes escoger una pieza";
+                
+                out.println("<html>");
+                out.println("<head></head>");
+                out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
+                out.println("</html>");
+                
+            } else{
                 if(Opc == 1 && cant == 0 && idP > 0){
                     mensaje = "La cantidad de piezas no debe ser 0";
                     
@@ -69,8 +166,7 @@ public class AgregarOrden extends HttpServlet {
                     out.println("<head></head>");
                     out.println("<body onload=\"alert('"+mensaje+"'); javascript:history.back(); \"></body>");
                     out.println("</html>");
-                    }
-                else{
+                } else{
                     if(Opc == 1 && cant == 0 && idP == 0){
                         mensaje = "Debes escoger al menos una pieza y la cantidad debe ser mayor a cero";
                         
@@ -109,7 +205,7 @@ public class AgregarOrden extends HttpServlet {
                     }
                 }
             }
-               
+            */   
             
         }
             catch (ClassNotFoundException e1){
