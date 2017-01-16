@@ -19,32 +19,18 @@
         <title>MQST - Contacto</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
-        <!-- Importantes xP -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/Animaciones.js"></script>
+        <script src="js/validator.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+        <link href="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.2/css/bootstrapValidator.min.css" rel="stylesheet">
+        <script src="//oss.maxcdn.com/jquery.bootstrapvalidator/0.5.3/js/bootstrapValidator.min.js"></script>
         <style>
-            /*.navbar { background-color:transparent ; } #f4511e */
             .container-fluid { padding-top: 10px; padding-bottom: 10px; }
         </style>
-        <!--
-        <script src="https://maps.googleapis.com/maps/api/js?"></script>
-        <script>
-            var map;
-            function init(){
-                var mapOptions = {
-                    center: new google.maps.LatLng(19.453568,-99.1775188),
-                    zoom: 15,
-                    mapTypeId: google.maps.MapTypeId: ROADMAP
-                };
-                map = new google.maps.Map(document.getElementById("map"), mapOptions);
-            }
-            google.maps.event.addDomListener(window,'load',init);
-        </script>-->
     </head>
     <body id="Inicio">
         <div class="jumbotron text-center">
@@ -65,9 +51,11 @@
                 <% if(sesion.getAttribute("Cliente")==null){%>
                     <div class="collapse navbar-collapse" id="myNavbar">
                       <ul class="nav navbar-nav navbar-right">
+                          <li><a href="Manuales.jsp">
+                            <span class="glyphicon glyphicon-question-sign"></span> Manuales</a></li>
                           <li><a href="Registro.jsp">
-                                <span class="glyphicon glyphicon-user"></span> ¡Registrate!</a></li>
-                          <li><a href="IniciarSesion.jsp">
+                                <span class="glyphicon glyphicon-user"></span> ¡Regístrate!</a></li>
+                          <li><a data-toggle="modal" href="#Login"> <!-- data-backdrop="false" data-dismiss="modal" -->
                                 <span class="glyphicon glyphicon-log-in"></span> Iniciar Sesión</a></li>
                       </ul>
                     </div>
@@ -139,11 +127,54 @@
                 </form>
             </div>
         </div>
-        <!--<div id="map" style="width:500px;height:400px; border:solid; border-color: #00FFFF"></div>-->
         <h2 align="center">Nuestra ubicación</h2>
         <h3 align="center">Golfo de San Lorenzo 56, Colonia: Tacuba, C.P.:11410, Miguel Hidalgo, CDMX</h3>
         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.9860794425013!2d-99.19325998532906!3d19.456166986870905!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d202756dbcd02b%3A0xb6cc92e96ec3fd47!2sGolfo+de+San+Lorenzo+56%2C+Tacuba%2C+11410+Ciudad+de+M%C3%A9xico%2C+CDMX!5e0!3m2!1ses-419!2smx!4v1481596018704" 
                 width="100%" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+        <% if(sesion.getAttribute("Admin")==null){ %>  
+        <!-- Inicio Modal -->
+        <div class="modal fade" id="Login" role="dialog" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <form class="form-horizontal" method='post' action='/MQST/IniciarSesion' onkeypress="return kp(event)" id="FormLogin">
+                        <div class="modal-header">
+                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                             <h1 class="modal-title" align="center">Inicio de Sesión</h1>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Usuario:</label>
+                                <div class="col-md-7">
+                                    <input type="text" class="form-control" placeholder="Ingresa tu nombre de usuario" 
+                                           name="UsuarioCliente" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-3">Password:</label>
+                                <div class="col-md-7">
+                                    <input type="password" class="form-control" placeholder="Ingresa tu Contraseña" 
+                                           name="ContrasenaCliente" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-7 col-md-offset-3">
+                                    <input type="submit" class="btn btn-primary" value="Iniciar Sesión" style="width: 100%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger pull-left" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-remove"></span> Salir del Inicio de Sesión </button>
+                            ¿Aún no estás registrado? <a href="/MQST/Registro.jsp">Registrarse</a><BR>
+                            <a data-toggle="tooltip" title="Por el momento no está disponible esta opción.">¿Olvidaste tu Contraseña?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Fin -->
+        <% } %>
+        
     <% } catch(Exception xxxD){} %>
         <BR><BR>
         <footer class="container-fluid text-center">

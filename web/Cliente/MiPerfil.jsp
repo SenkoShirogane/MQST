@@ -27,12 +27,13 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="../js/prototype.js" type="text/javascript"></script>
         <script src="../js/ChatMensajes.js"></script>
         <script src="../js/Animaciones.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <style>
-            .btn:hover {background-color: transparent;  border: 1px solid white; color: white; }
+            .btn-lg:hover {background-color: transparent;  border: 1px solid white; color: white; }
         </style>
     </head>
     <body id="Inicio">
@@ -115,7 +116,7 @@
                 </div>
             </div>
             <div class="col-md-offset-0 col-md-8">
-                <div class="jumbotron slideanim">
+                <div class="jumbotron">
                 <h2><span class="glyphicon glyphicon-comment"></span></h2>
                 <h2>Contáctanos</h2> 
                     <p></p>
@@ -127,31 +128,36 @@
                 </div>
             </div>
         </div>
-        <!-- Inicia Chat --><!--
+        <!-- Inicia Chat -->
         <nav class="navbar navbar-inverse navbar-fixed-bottom" style="background-color:transparent;">
             <div id="chat" class="panel nav navbar-nav navbar-right">
                 <div id="header-chat" class="panel-heading">
-                    <a data-toggle="collapse" href="#colapse" style="color:white; font-size:15px;">
+                    <a data-toggle="collapse" href="#colapse">
                         Chat en línea (No Disponible)
                     </a>
                 </div>
                 <div id="colapse" class="panel-collapse collapse" >
-                    <div id="mensajes">
-                        <div class="mensaje-autor">
-                            <div class="flecha-izquierda"></div>
-                            <div class="contenido">
-                                    Buenas tardes, ¿en qué puedo ayudarle?
-                            </div>
-                        <!--<div class="fecha">Enviado: 14-04-2001</div>
-                        </div>
-                    </div>
+                    <div id="mensajes"></div>
+                    
                     <div id="caja-mensaje">
-                        <input type="text" placeholder="Escribir mensaje..." id="textbox">
-                        <button id="send"> &#8594; </button>
+                        <form id="uriForm">
+                            <input type="hidden" id="uri" value="ws://localhost:8886">
+                            <div class="col-md-6">
+                                <button type="submit" id="connect" class="btn btn-success" style="width: 100%">Conectar</button>
+                            </div>
+                            <div class="col-md-6" style="padding-bottom: 10px">
+                                <button type="button" id="disconnect" disabled="disabled" class="btn btn-danger" 
+                                        style="width: 100%">Desconectar</button>
+                            </div>
+                        </form>
+                        <form id="sendForm">
+                            <input type="text" placeholder="Escribir mensaje..." id="textbox">
+                            <button type="submit" id="Send"><span class="glyphicon glyphicon-arrow-right"></span></button>
+                        </form>
                     </div>
                 </div>
             </div>
-        </nav>-->
+        </nav>
         <!--Cierra Chat -->
         <% base.cierraConexion();
            } catch(Exception xxxD){}%>

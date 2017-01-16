@@ -120,6 +120,14 @@
         <servlet-name>EnviarEmail</servlet-name>
         <servlet-class>Cliente.EnviarEmail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Chat</servlet-name>
+        <servlet-class>Sockets.Chat</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Server</servlet-name>
+        <servlet-class>Sockets.Server</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>IniciarSesion</servlet-name>
         <url-pattern>/IniciarSesion</url-pattern>
@@ -219,6 +227,14 @@
     <servlet-mapping>
         <servlet-name>EnviarEmail</servlet-name>
         <url-pattern>/EnviarEmail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Chat</servlet-name>
+        <url-pattern>/Chat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Server</servlet-name>
+        <url-pattern>/Server</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

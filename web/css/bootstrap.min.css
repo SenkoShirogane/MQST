@@ -94,13 +94,13 @@ ul li ul li a{padding: 10px 10px; font-size: 16.5px;} /* Opciones del navbar*/
 
 /* Chat */
 #chat{
-    background-color: #eee;
     margin: 20px auto 0;
     width: 400px;
+    border: 2px solid white;  
 }
-#chat #header-chat{
-    background-color: #555;
+#chat #header-chat a{
     color: white;
+    font-size: 15px;
     padding: 10px;
     text-align: center;
     text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
@@ -111,31 +111,31 @@ ul li ul li a{padding: 10px 10px; font-size: 16.5px;} /* Opciones del navbar*/
     padding: 10px;
     width: 400px;
 }
-#caja-mensaje input{
+#caja-mensaje #sendForm input{
     border: solid 1px #4193BF;
     outline: none;
     padding: 10px;
-    width: 280px;
+    width: 80%;
 }
-#caja-mensaje button{
+#caja-mensaje #Send{
     border: 0;
     background-color: #4193BF;
     color: white;
     font-size: 16px;
     padding: 8px;
-    width: 64px;
+    width: 15%;
 }
 #chat #mensajes{
     padding: 10px;
     height: 370px; /*400 */
     width: 400px;
     overflow: hidden;
-    overflow-y: scroll 
+    overflow-y: scroll;
 }
 #chat #mensajes .mensaje-autor{ margin-bottom: 20px; /*50*/ }
 #chat #mensajes .mensaje-autor .contenido{
     background-color: #ff7733;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 2px 2px 3px rgba(0,0,0,0.3);
     display: inline-block;
     font-size: 13px;
@@ -157,7 +157,7 @@ ul li ul li a{padding: 10px 10px; font-size: 16.5px;} /* Opciones del navbar*/
 #chat #mensajes .mensaje-amigo{ margin-bottom: 20px; }
 #chat #mensajes .mensaje-amigo .contenido{
     background-color: #3990BF;
-    border-radius: 5px;
+    border-radius: 10px;
     color: white;
     display: inline-block;
     font-size: 13px;

@@ -10,17 +10,20 @@
    HttpSession sesion = request.getSession();
    String usuario;
 
-   if(sesion.getAttribute("Admin")!=null){ usuario = session.getAttribute("Admin").toString();
-   } else { out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
-   
+   if(sesion.getAttribute("Admin")!=null){
+       usuario = session.getAttribute("Admin").toString();
+   } else {
+       out.println("<script> location.replace('/MQST/index.jsp'); </script>");
+   }
    BD.MQST bd = new BD.MQST();
     try{
         bd.conectar();
+        //ResultSet resultados = bd.consulta("");
 %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
-        <title>MQST - Chat</title>
+        <title>MQST - Mi Perfil</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">        
         <link href="../css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +33,6 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <style>
-            .container-fluid { padding-top: 10px; padding-bottom: 10px; }
             .A {border: 3px solid #292C5C; height: 500px} .B {border: 3px solid #292C5C;}
         </style>
     </head>
@@ -99,8 +101,8 @@
                         <ul class="dropdown-menu">
                             <li><a href="/MQST/Administrador/Perfil.jsp">
                                    <span class="glyphicon glyphicon-arrow-right"></span> Mi Perfil</a></li>
-                            <li class="active"><a> 
-                                   <span class="glyphicon glyphicon-arrow-right"></span> Chat </a></li>
+                            <li class="active"><a >
+                                   <span class="glyphicon glyphicon-arrow-right"></span> Chat</a></li>
                             <li><a href="/MQST/CerrarSesion"> 
                                    <span class="glyphicon glyphicon-arrow-right"></span> Cerrar Sesión</a></li>
                         </ul>
