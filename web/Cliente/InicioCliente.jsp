@@ -10,10 +10,11 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-    if(session.getAttribute("Cliente")!=null){
-        usuario = session.getAttribute("Cliente").toString();
-    }else{
-        out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    if(session.getAttribute("Cliente")!=null){ usuario = session.getAttribute("Cliente").toString();
+    }else{ out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    
     BD.MQST base2 = new BD.MQST();
     String BuscarProducto="";
     try{
@@ -71,7 +72,7 @@
                                      <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
                           </ul>
                     </li>
-                    <li><a href="../Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
+                    <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
                             </span><span class="badge">1</span></a>
                     </li>
                 </ul>
@@ -80,11 +81,11 @@
         </nav>
         <h1 align="center">Catálogo</h1>
         <h3 align="center">Aquí puedes ver todos los productos en venta.</h3>
-        <div class="container-fluid text-center">
-            <div class="col-md-6 col-md-offset-3">
-                <form class="navbar-form" role="search">
+        <div class="container-fluid text-center" Style="padding-bottom: 30px;">
+            <div class="col-md-4 col-md-offset-4">
+                <form role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Buscar Producto" name="Buscar" id="Busqueda" 
+                        <input type="search" class="form-control" placeholder="¿Deseas buscar algun Producto?" name="Buscar"
                                minlength="3" autofocus onkeypress="return kp(event)" required>
                         <div class="input-group-btn">
                             <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>

@@ -7,13 +7,12 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.sql.*"%>
 <%
-   HttpSession sesion = request.getSession();
-   String usuario;
-
-   if(sesion.getAttribute("Cliente")!=null){
-       usuario = session.getAttribute("Cliente").toString();
-   } else{
-       out.println("<script> location.replace('/MQST/index.jsp'); </script>"); }
+    HttpSession sesion = request.getSession();
+    String usuario;
+    if(session.getAttribute("Cliente")!=null){ usuario = session.getAttribute("Cliente").toString();
+    }else{ out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,9 +28,9 @@
         <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
         <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
         <style>
-            h4{ color:white; }
+            .def{ border-color: black;}
             .container-fluid { padding-top: 10px; padding-bottom: 10px; }
-        </style>
+        </style> 
     </head>    
     <body id="Inicio">
         <div class="jumbotron text-center">
@@ -70,54 +69,62 @@
                                      <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
                           </ul>
                     </li>
-                    <li class="active"><a><span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li class="active"><a><span class="glyphicon glyphicon-bell">
+                            </span><span class="badge">1</span></a>
                 </ul>
               </div>
             </div>
         </nav>
         <h1 align="center">Notificaciones</h1>
-        <h3 align="center">Aquí puedes aceptar o cancelar los servicios extras para tus órdenes</h3>
+        <h3 align="center">Aquí puedes aceptar o cancelar los servicios extras para tus órdenes</h3><BR>
+        <!--
         <BR><BR>
         <h1 align="center"><span class="glyphicon glyphicon-ok"></span></h1>
         <h3 align="center"> ¡Aún no tienes órdenes que necesiten servicios extra! </h3>
+        -->
+        <div class="container-fluid">
         <%
             int pato=0;
-            int contador=1;
-            for(pato=1; pato<=10; pato++){ 
+            int contador=1; //Será la ID de la orden extra x3
+            for(pato=1; pato<=3; pato++){ 
         %>
-        <!--
-        <div class="container-fluid">
-            <div class="form-group jumbotron col-md-offset-2 col-md-8" id="Orden">
-                <Form action="    " method="post">
-                    <div class="col-md-offset-0 col-md-2">
-                        <input type="hidden" name="OrdenConfirmar" placeholder="    " required>
-                        <h4>Orden: 777 </h4>
-                    </div>
-                    <div class="col-md-offset-1 col-md-4">
-                        <h4>Costo actual: $999</h4>
-                        <h4>Costo nuevo: $1500</h4>
-                    </div>
-                    <div class="col-md-offset-1 col-md-4">
-                        <h4>Especificaciones: dhdhdhdhdh dhdhdhdhd</h4>
-                    </div>
-                    <div class="col-md-offset-0 col-md-12">
-                        <h4>Servicio Extra: dhdhdhdhdh dhdhdhdhd</h4>
-                    </div>
-                    <div class="col-md-offset-0 col-md-1">
-                        <input type="submit" class="btn btn-primary" value="Aceptar">
-                    </div>
-                </Form>
-                <Form action="   " method="post">
-                    <input type="hidden" name="OrdenCancelar" value="  " required>
-                    <div class="col-md-offset-1 col-md-2">
-                        <input type="submit" class="btn btn-default" value="Cancelar">
-                    </div>
-                </form>
+        <div class="col-md-offset-2 col-md-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        Orden #<%=contador%> ||
+                        Especificaciones de la orden: dhdhdhdhdh dhdhdhdhd
+                    </h4>
+                </div>
+                <div class="panel-body">
+                    <form action="" method="post">
+                        <div class="col-md-3">
+                            <p>Costo actual: $ 9999</p>
+                        </div>
+                        <div class="col-md-3">
+                            <p>Costo nuevo: $ 10000</p>
+                        </div>
+                        <div class="col-md-6">
+                            <p>Especificaciones: dhdhdhdhdh dhdhdhdhd dhdhdhdhd dhdhdhdhd</p>
+                        </div>
+                        <div class="col-md-12">
+                            <p>Servicio Extra: dhdhdhdhdh dhdhdhdhd</p>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value="Aceptar Servicio" style="width: 100%">
+                        </div>
+                    </form>
+                    <Form action="" method="post" onsubmit="return confirmar2()">
+                        <input type="hidden" name="OrdenCancelar" value="  " required>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-default def" value="Rechazar Servicio" style="width: 100%">
+                        </div>
+                    </form>
+                </div>
             </div>
-        </div><BR>
-        -->
-        <% } %>
-        <BR><BR>
+        </div>
+        <% contador++; } %>
+        </div>
         <!-- Inicia Chat --><!--
         <nav class="navbar navbar-inverse navbar-fixed-bottom" style="background-color:transparent;">
             <div id="chat" class="panel nav navbar-nav navbar-right">

@@ -60,8 +60,8 @@
                         <span class="glyphicon glyphicon-time"></span> Mis Órdenes </a></li>
                     <li><a href="../CerrarSesion">
                         <span class="glyphicon glyphicon-off"></span> Salir</a></li>
-                    <li><a href="../Ordenes/Notificaciones.jsp">
-                        <span class="glyphicon glyphicon-bell"></span></a></li>
+                    <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
+                            </span><span class="badge">1</span></a>
                 </ul>
               </div>
             </div>
@@ -143,11 +143,11 @@
                         <form id="uriForm">
                             <input type="hidden" id="uri" value="ws://localhost:8886">
                             <div class="col-md-6">
-                                <button type="submit" id="connect" class="btn btn-success" style="width: 100%">Conectar</button>
+                                <input type="submit" id="connect" class="btn btn-success" style="width: 100%" value="Conectar">
                             </div>
                             <div class="col-md-6" style="padding-bottom: 10px">
-                                <button type="button" id="disconnect" disabled="disabled" class="btn btn-danger" 
-                                        style="width: 100%">Desconectar</button>
+                                <input type="button" id="disconnect" disabled="disabled" value="disconnect" class="btn btn-danger"
+                                        style="width: 100%"> <!-- Si lo pongo en español no jurula shido x3 -->
                             </div>
                         </form>
                         <form id="sendForm">

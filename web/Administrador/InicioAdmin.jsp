@@ -9,12 +9,11 @@
 <%
    HttpSession sesion = request.getSession();
    String usuario;
-
-   if(sesion.getAttribute("Admin")!=null){
-       usuario = session.getAttribute("Admin").toString();
-   } else{
-       out.println("<script> location.replace('/MQST/index.jsp'); </script>");
-   }
+    if(session.getAttribute("Admin")!=null){ usuario = session.getAttribute("Admin").toString();
+    }else{ out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+    
    String BuscarPieza="";
    try {
         BD.MQST bd = new BD.MQST();  

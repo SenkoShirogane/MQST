@@ -10,10 +10,10 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-    if(session.getAttribute("Admin")!=null){
-        usuario = session.getAttribute("Admin").toString();
-    }else{
-        out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    if(session.getAttribute("Admin")!=null){ usuario = session.getAttribute("Admin").toString();
+    }else{ out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
 %>
 <% BD.MQST base2 = new BD.MQST();
     String ElimCliente = "";

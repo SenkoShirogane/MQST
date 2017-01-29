@@ -10,10 +10,10 @@
 <%
     HttpSession sesion = request.getSession();
     String usuario;
-    if(session.getAttribute("Admin")!=null){
-        usuario = session.getAttribute("Admin").toString();
-    }else{
-        out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    if(session.getAttribute("Admin")!=null){ usuario = session.getAttribute("Admin").toString();
+    }else{ out.println("<script> location.replace('/MQST/index.jsp'); </script>");}
+    response.setContentType("text/html;charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
     
     BD.MQST base2 = new BD.MQST();
     String ElimProveedor = "";
@@ -174,6 +174,7 @@
                             + "OR Nombre like '%"+BuscarProveedor+"%' OR Apellido1 like '%"+BuscarProveedor+"%' OR Apellido2 like '%"+BuscarProveedor+"%' "
                             + "OR Email like '%"+BuscarProveedor+"%' OR Municipio like '%"+BuscarProveedor+"%' OR Estado like '%"+BuscarProveedor+"%');");
                     %>  
+                    <h2 align="center">Éstos son los Resultados que se encontraron para "<%=BuscarProveedor%>".</h2>
                     <%while(rs2.next()){ %>
                     <tr>
                         <form action="../Proveedor/ModificarProveedor.jsp" method="get" >

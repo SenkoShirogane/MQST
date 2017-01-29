@@ -18,7 +18,7 @@
             .bg-2{ /*Manuales*/  background-color: #4CDCC8; color: #2f2f2f; } 
             .bg-3{ /*Quienes Somos*/ background-color: #E9BD68; color: #2f2f2f; }
             .logo{color:black;font-size:200px} .close {font-size:30px} p{font-size: 17px;}
-            .btn-2:hover,.btn-3:hover { background-color: transparent; border: 2px solid black;  color: black; }
+            .btn-2:hover,.btn-3:hover { background-color: transparent; border: 2px solid black; color: black; }
             .btn-1:hover{ background-color: transparent; border: 1px solid white; color: white; }
         </style>
     </head>
@@ -70,8 +70,8 @@
                                                 <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
                                   </ul>
                             </li>
-                            <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell"></span>
-                                </a></li>
+                            <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
+                                </span><span class="badge">1</span></a>
                         </ul>
                     </div>
                 <% } else if(sesion.getAttribute("Cliente")==null) { %>
@@ -119,9 +119,9 @@
                                 <span class="caret"></span></a>
                                 <ul class="dropdown-menu">
                                     <li><a href="/MQST/Administrador/Perfil.jsp">
-                                        <span class="glyphicon glyphicon-arrow-right"></span> Mi Perfil </a></li>
+                                        <span class="glyphicon glyphicon-arrow-right"></span> Mi Perfil</a></li>
                                     <li><a href="/MQST/CerrarSesion"> 
-                                        <span class="glyphicon glyphicon-arrow-right"></span> Cerrar Sesión </a></li>
+                                        <span class="glyphicon glyphicon-arrow-right"></span> Cerrar Sesión</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -250,7 +250,6 @@
                 <% } %>   
             </div>
         </div>
-        
         <footer class="container-fluid text-center">
             <a href="#Inicio" title="Volver al Inicio">
                 <span class="glyphicon glyphicon-chevron-up" style="font-size:20px;"></span>

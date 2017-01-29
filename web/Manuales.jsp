@@ -75,8 +75,8 @@
                                              <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
                                   </ul>
                             </li>
-                            <li><a href="/MQST/Ordenes/Notificaciones.jsp">
-                                <span class="glyphicon glyphicon-bell"></span></a></li>
+                            <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
+                                </span><span class="badge">1</span></a>
                         </ul>
                     </div>
                 <% } else if(sesion.getAttribute("Cliente")==null) { %>

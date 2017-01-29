@@ -39,7 +39,7 @@
                   <span class="icon-bar"></span> 
                 </button>
                 <a class="navbar-brand" href="index.jsp">
-                    <span class="glyphicon glyphicon-home"></span> Inicio </a>  
+                    <span class="glyphicon glyphicon-home"></span> Inicio</a>
                 </div>
                 <% HttpSession sesion = request.getSession(); %>
                 <% if(sesion.getAttribute("Cliente")==null && sesion.getAttribute("Admin")==null){%>
@@ -75,8 +75,8 @@
                                              <span class="glyphicon glyphicon-log-out"></span> Cerrar Sesión</a></li>
                                   </ul>
                             </li>
-                            <li><a href="/MQST/Ordenes/Notificaciones.jsp">
-                                <span class="glyphicon glyphicon-bell"></span></a></li>
+                            <li><a href="/MQST/Ordenes/Notificaciones.jsp"><span class="glyphicon glyphicon-bell">
+                                </span><span class="badge">1</span></a>
                         </ul>
                     </div>
                 <% } else if(sesion.getAttribute("Cliente")==null) { %>
